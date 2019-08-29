@@ -1,0 +1,22 @@
+
+syntax = "proto3";
+
+package ontoumlserver;
+
+service OntoUMLService {
+  rpc VerifyModel(Message) returns (Diagnoses) {}
+
+  // rpc ListFeatures(Rectangle) returns (stream Feature) {}
+  //
+  // rpc RecordRoute(stream Point) returns (RouteSummary) {}
+  //
+  // rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+}
+
+message Message {
+  string model = 1;
+}
+
+message Diagnoses {
+  string reply = 1;
+}
