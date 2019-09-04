@@ -24,7 +24,7 @@ var modelRecordSchema = new mongoose.Schema({
   model: String,
   updated: { type: Date, default: Date.now() },
   uri: { type: String, unique: true }
-}, { _id: false });
+});
 var ModelRecord = mongoose.model('ModelRecord', modelRecordSchema);
 
 // ---------------------- gRPC configuration ----------------------
@@ -53,13 +53,16 @@ async function verifyModel(call, callback) {
   var modelVerification = new OntoUMLVerification(submmittedModel);
 
   if (modelVerification.isConformant()) {
-    await ModelRecord.deleteOne({ uri: modelVerification.getModel().getUri() }).exec();
-    var modelRecord = new ModelRecord({ uri: modelVerification.getModel().getUri(), model: submittedString });
+    console.log("Conformant model submission.");
+
+    await ModelRecord.deleteOne({ uri: modelVerification.model.uri });
+    var modelRecord = new ModelRecord({ uri: modelVerification.model.uri, model: submittedString });
     await modelRecord.save();
 
-    modelVerification.verify();
-    callback(null,{reply: "Verification completed"});
+    var reply = "Verification completed: " + JSON.stringify(modelVerification.verify(),null,2);
+    callback(null,{reply: reply});
   } else {
+    console.log("Non conformant model submission.");
     callback(null,{reply: modelVerification.getConformanceErrors()});
   }
 

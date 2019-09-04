@@ -13,13 +13,16 @@ var ontoumlserver = grpc.loadPackageDefinition(packageDefinition).ontoumlserver;
 
 function main() {
   var client = new ontoumlserver.OntoUMLService('localhost:50051',grpc.credentials.createInsecure());
-  //var model = require("../examples/m1.example.json");
-  var model = "";
+  // var model = require("../examples/m1.example.json");
+  var model = require("../examples/m2.example.json");
+  // var model = "";
 
   console.log('Initiating first request with model...\n' + model);
-  client.verifyModel({model: JSON.stringify(model)}, function(err, diagnoses) {
-    console.log('Diagnoses:');
-    console.log(diagnoses.reply);
+  client.verifyModel({model: JSON.stringify(model)}, function(err, diagnosis) {
+    console.log('Diagnosis:');
+    if (diagnosis && diagnosis.reply) {
+      console.log(diagnosis.reply);
+    }
   });
   console.log('Terminating client.');
 }
