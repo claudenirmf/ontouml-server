@@ -3,7 +3,8 @@ const OntoUMLVerification = require('./verification');
 // ---------------------- Database connection ----------------------
 
 const mongoose = require('mongoose');
-var mongoDB = 'mongodb://localhost/ontouml';
+// var mongoDB = 'mongodb://host.docker.internal/ontouml';
+var mongoDB = 'mongodb://db:27017/ontouml';
 
 var db = mongoose.connection;
 

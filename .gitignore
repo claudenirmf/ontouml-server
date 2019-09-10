@@ -29,4 +29,7 @@ node_modules
 
 build
 
+# Docker specific build
+data/
+
 *.DS_Store

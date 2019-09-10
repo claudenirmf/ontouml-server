@@ -21,8 +21,8 @@
     "ajv": "^6.10.0",
     "grpc": "^1.23.3",
     "mongoose": "^5.6.11",
-    "ontouml-schema": "file:../ontouml-schema",
-    "ontouml-schema-utils-js": "file:../ontouml-schema-utils-js",
+    "ontouml-schema": "git+https://github.com/claudenirmf/ontouml-schema.git",
+    "ontouml-schema-utils-js": "git+https://github.com/claudenirmf/ontouml-schema-utils-js.git",
     "vscode-uri": "^2.0.3"
   },
   "devDependencies": {
